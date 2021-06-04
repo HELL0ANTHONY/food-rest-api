@@ -3,14 +3,14 @@ import { Request, Response, NextFunction } from "express";
 import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import routes from "./routes";
-require("./database/database");
+import "./database/database";
 
 const app = express();
 // app.name = 'API';
 
 app.use(express.urlencoded({
   extended: true,
-  limit   : '50mb'
+  limit: '50mb'
 }));
 app.use(express.json({ limit: '50mb' }));
 app.use(cookieParser());
