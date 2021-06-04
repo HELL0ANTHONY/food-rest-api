@@ -2,7 +2,7 @@ import { Model, DataTypes } from "sequelize";
 import sequelize from "../database/database";
 
 interface TypeAttributes {
-  id?: number;
+  id: number;
   name: string;
 }
 
@@ -15,7 +15,7 @@ const Type = sequelize.define<TypeInstance>("type", {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
-    allowNull: true
+    allowNull: false
   },
   name: {
     type: DataTypes.STRING,

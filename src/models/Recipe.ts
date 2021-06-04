@@ -16,8 +16,7 @@ interface RecipeInstance
   extends Model<RecipeAttributes>,
   RecipeAttributes { }
 
-const Recipe = sequelize.define<RecipeInstance>(
-  "recipe", {
+const Recipe = sequelize.define<RecipeInstance>("recipe", {
   id: {
     type: DataTypes.UUID,
     allowNull: false,
