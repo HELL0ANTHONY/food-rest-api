@@ -4,8 +4,8 @@
   "description": "Rest Api with Node.js and Typescript",
   "main": "index.js",
   "scripts": {
-    "build": "tsc --w",
-    "start": "nodemon dist/index.js"
+    "compile": "tsc --w",
+    "dev": "nodemon dist/index.js"
   },
   "repository": {
     "type": "git",
