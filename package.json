@@ -11,7 +11,12 @@
     "type": "git",
     "url": "git+https://github.com/HELL0ANTHONY/food-rest-api.git"
   },
-  "keywords": [],
+  "keywords": [
+    "Node",
+    "Typescript",
+    "sequelize",
+    "express"
+  ],
   "author": "HELL0ANTHONY",
   "license": "ISC",
   "bugs": {
