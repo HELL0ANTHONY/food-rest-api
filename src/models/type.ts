@@ -3,8 +3,8 @@
 import { Model } from "sequelize";
 
 interface TypeAttributes {
-  id?: string;
-  name?: string;
+  id: string;
+  name: string;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
@@ -32,7 +32,7 @@ module.exports = (sequelize: any, DataTypes: any) => {
     },
     {
       sequelize,
-      modelName: "Recipe"
+      modelName: "Type"
     }
   );
   return Type;
