@@ -9,7 +9,7 @@ const NAMESPACE = "Index";
 const httpServer = http.createServer(server);
 
 db.sequelize
-  .sync({ force: true })
+  .sync({ force: false })
   .then(async () => {
     await chargeTypes();
   })
