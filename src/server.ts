@@ -4,6 +4,7 @@ import morgan from "morgan";
 import helmet from "helmet";
 import cookieParser from "cookie-parser";
 import logging from "./helpers/logging";
+import routes from "./routes";
 
 const NAMESPACE = "Server";
 const router = express();
@@ -42,7 +43,7 @@ router.use((req, res, next) => {
   next();
 });
 
-// router.use("/", routes);
+router.use("/", routes);
 router.disable("etag");
 
 router.use((req: Request, res: Response, next: NextFunction) => {
@@ -51,5 +52,12 @@ router.use((req: Request, res: Response, next: NextFunction) => {
     message: error.message
   });
 });
+
+// router.use((err: any, req: Request, res: Response, next: NextFunction) => {
+//   const status = err.status || 500;
+//   const message = err.message || err;
+//   console.error(err);
+//   res.status(status).send(message);
+// });
 
 export default router;
