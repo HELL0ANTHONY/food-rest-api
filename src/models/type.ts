@@ -3,8 +3,8 @@
 import { Model } from "sequelize";
 
 interface TypeAttributes {
-  id: string;
-  name: string;
+  id?: string;
+  name?: string;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {
@@ -23,7 +23,8 @@ module.exports = (sequelize: any, DataTypes: any) => {
       id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
-        autoIncrement: true
+        autoIncrement: true,
+        allowNull: false
       },
       name: {
         type: DataTypes.STRING,
