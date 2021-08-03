@@ -4,7 +4,8 @@ import { Model, UUIDV4 } from "sequelize";
 interface RecipeAttributes {
   id: string;
   name: string;
-  resume: string;
+  summary: string;
+  dishTypes: string[] | null;
   punctuation: number | null;
   healthScore: number | null;
   steps: string[] | null;
@@ -14,10 +15,11 @@ module.exports = (sequelize: any, DataTypes: any) => {
   class Recipe extends Model<RecipeAttributes> implements RecipeAttributes {
     id!: string;
     name!: string;
-    resume!: string;
+    summary!: string;
     punctuation!: number;
     healthScore!: number;
     steps!: string[];
+    dishTypes!: string[];
 
     static associate(models: any) {
       Recipe.belongsToMany(models.Type, {
@@ -38,17 +40,22 @@ module.exports = (sequelize: any, DataTypes: any) => {
         unique: true,
         allowNull: false
       },
-      resume: {
+      summary: {
         type: DataTypes.STRING,
         allowNull: false
       },
       punctuation: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        defaultValue: 0
       },
       healthScore: {
-        type: DataTypes.INTEGER
+        type: DataTypes.INTEGER,
+        defaultValue: 0
       },
       steps: {
+        type: DataTypes.ARRAY(DataTypes.STRING)
+      },
+      dishTypes: {
         type: DataTypes.ARRAY(DataTypes.STRING)
       }
     },
