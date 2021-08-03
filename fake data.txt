@@ -1,0 +1,15 @@
+  id: string;
+  name: string;
+  resume: string;
+  punctuation: number | null;
+  healthScore: number | null;
+  steps: string[] | null;
+  
+{
+    "name": "example",
+    "resume": "a large text",
+    "punctuation": 3,
+    "healthScore": 89,
+    "steps": ["step one", "step two", "step three"],
+    "types": [{"name": "one"},{"name": "two"}, {"name": "three"}]
+}

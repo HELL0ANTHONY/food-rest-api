@@ -5,9 +5,9 @@ interface RecipeAttributes {
   id: string;
   name: string;
   resume: string;
-  punctuation: number;
-  healthScore: number;
-  steps: string[];
+  punctuation: number | null;
+  healthScore: number | null;
+  steps: string[] | null;
 }
 
 module.exports = (sequelize: any, DataTypes: any) => {

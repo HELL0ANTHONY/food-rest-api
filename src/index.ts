@@ -3,13 +3,13 @@ import server from "./server";
 import config from "./config";
 import db from "./models";
 import logging from "./helpers/logging";
-import chargeTypes from "./seeders/chargePokemonTypes";
+import chargeTypes from "./seeders/chargeRecipeTypes";
 
 const NAMESPACE = "Index";
 const httpServer = http.createServer(server);
 
 db.sequelize
-  .sync({ force: false })
+  .sync({ force: true })
   .then(async () => {
     await chargeTypes();
   })
