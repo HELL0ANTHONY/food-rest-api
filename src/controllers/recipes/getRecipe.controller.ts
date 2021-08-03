@@ -1,5 +1,9 @@
 import { Request, Response, NextFunction } from "express";
-import db from "../../models";
+import axios from "axios";
+import { baseURL } from "../../config/constants";
+import getRecipeByIdFromDB from "./functions/getRecipeByIdFromDB";
+
+const isNumber = (n: any) => !isNaN(parseFloat(n)) && !isNaN(n - 0);
 
 const getRecipe = async (
   req: Request,
@@ -8,16 +12,14 @@ const getRecipe = async (
 ): Promise<Response | undefined> => {
   const id: string = req.params.id;
 
-  const recipe: object = await db.Recipe.findByPk(id, {
-    attributes: ["id", "name"],
-    include: {
-      model: db.Type,
-      attributes: ["id", "name"],
-      through: {
-        attributes: []
-      }
-    }
-  });
+  let recipe: object = {};
+  if (isNumber(id)) {
+    const idAsNumber: number = Number.parseInt(id);
+    const apiRecipe = await axios.get(baseURL(idAsNumber));
+    recipe = apiRecipe.data;
+  } else {
+    recipe = await getRecipeByIdFromDB(id);
+  }
 
   return res.json(recipe);
 };
