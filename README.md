@@ -7,8 +7,11 @@
 <p align="right">
   <img height="200" src="./cooking.png" />
 </p>
-
 ## Objetivos del Proyecto
+
+apikey: e1c0e2ad25354aa3a8c90ab256c7f4f4
+
+apikey: a5904181e187493591e045a524f56c9b
 
 - Construir una App utilizando React, Redux, Node y Sequelize.
 - Afirmar y conectar los conceptos aprendidos en la carrera.
