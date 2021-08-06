@@ -1,21 +1,11 @@
-import getRecipeByIdFromDB from "./functions/getRecipeByIdFromDB";
+import axios from "axios";
 import { Request, Response, NextFunction } from "express";
+import getRecipeByIdFromDB from "./functions/getRecipeByIdFromDB";
 import { baseURL } from "../../config/constants";
 import mapData from "../../helpers/mapData";
-import axios from "axios";
+import { Recipe } from "../../interfaces/Recipe";
 
 const isNumber = (n: any) => !isNaN(parseFloat(n)) && !isNaN(n - 0);
-
-interface Recipe {
-  id: string | number;
-  name: string;
-  image?: string;
-  summary: string;
-  types: object[];
-  dishTypes: string[];
-  healthScore: number;
-  steps: string[];
-}
 
 let cache: Recipe[] = [];
 const getRecipe = async (

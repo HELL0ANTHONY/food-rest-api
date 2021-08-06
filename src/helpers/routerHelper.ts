@@ -1,14 +1,20 @@
 import { Request, Response, NextFunction } from "express";
 
+type Helper = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => Promise<Response | undefined>;
+
 const routerHelper =
-  (func: any) =>
+  (fn: Helper) =>
   async (
     req: Request,
     res: Response,
     next: NextFunction
   ): Promise<Response | undefined> => {
     try {
-      return await func(req, res, next);
+      return await fn(req, res, next);
     } catch (error) {
       next(error);
     }
