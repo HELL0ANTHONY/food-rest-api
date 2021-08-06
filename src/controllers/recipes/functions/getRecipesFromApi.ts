@@ -12,7 +12,7 @@ const requestToApi = async (url: string): Promise<object> => {
 };
 
 const getRecipesFromApi = async (size: number): Promise<object[]> => {
-  const promiseRecipes: Promise<object>[] = [...Array(size).keys()]
+  const promiseRecipes: Promise<object>[] = [...Array(size + 1).keys()]
     .slice(1)
     .map(id => requestToApi(baseURL(id)));
   const resolveRecipes = await Promise.allSettled(promiseRecipes);

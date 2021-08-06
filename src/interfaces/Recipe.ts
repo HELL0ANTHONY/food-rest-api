@@ -3,8 +3,8 @@ export interface Recipe {
   name: string;
   image?: string;
   summary: string;
-  types: object[];
-  dishTypes: string[];
-  healthScore: number;
-  steps: string[];
+  Types: object[];
+  dishTypes?: string[];
+  healthScore?: number;
+  steps?: string[];
 }
