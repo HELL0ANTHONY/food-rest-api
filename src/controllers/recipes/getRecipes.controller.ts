@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import getRecipesFromDB from "./functions/getRecipesFromDB";
 import getRecipesFromApi from "./functions/getRecipesFromApi";
+import filterByTypes from "./functions/filterByTypes";
 import Sort from "./functions/Sort";
 import { Recipe } from "../../interfaces/Recipe";
 import { Type } from "../../interfaces/Type";
@@ -22,7 +23,7 @@ const getRecipes = async (
 ): Promise<Response | undefined> => {
   const page: string = req.query.page as string;
   const pageAsNumber: number = Number.parseInt(page);
-  const NUMBER_OF_REQUEST_TO_THE_API: number = 1;
+  const NUMBER_OF_REQUEST_TO_THE_API: number = 2;
   const { search, filter, sort, order }: Body = req.body;
   let recipes: Recipe[] = [];
 
@@ -42,9 +43,11 @@ const getRecipes = async (
 
   const searchByTypes = filter?.trim();
   if (searchByTypes !== undefined && searchByTypes && searchByTypes !== "all") {
-    recipes = recipes.filter((e: Recipe) =>
+    const recipesFilteredFromDB = await filterByTypes(searchByTypes);
+    const recipesFilteredFromApi = recipesFromApi.filter((e: Recipe) =>
       (e.Types as Type[]).some((type: Type) => type.name === searchByTypes)
     );
+    recipes = [...recipesFilteredFromDB, ...recipesFilteredFromApi];
   }
 
   if (sort && sort !== "default") {
