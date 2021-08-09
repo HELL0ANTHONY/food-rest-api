@@ -3,6 +3,7 @@ export interface Recipe {
   name: string;
   image?: string;
   summary: string;
+  punctuation: number;
   Types: object[];
   dishTypes?: string[];
   healthScore?: number;

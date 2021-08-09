@@ -19,6 +19,7 @@ function mapData(object: object): object[] {
         Types: types(recipe?.diets),
         dishTypes: recipe?.dishTypes,
         healthScore: recipe?.healthScore,
+        punctuation: recipe?.spoonacularScore,
         steps: steps(recipe?.analyzedInstructions).flat()
       };
     })
