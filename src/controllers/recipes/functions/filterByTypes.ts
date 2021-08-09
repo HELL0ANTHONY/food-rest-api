@@ -1,9 +1,5 @@
-import { Op } from "sequelize";
 import db from "../../../models";
 import { Recipe } from "../../../interfaces/Recipe";
-interface Id {
-  id: string;
-}
 
 const filterByTypes = async (typeName: string): Promise<Recipe[]> => {
   return await db.Recipe.findAll({
