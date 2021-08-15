@@ -46,18 +46,18 @@ router.use((req, res, next) => {
 router.use("/", routes);
 router.disable("etag");
 
-router.use((req: Request, res: Response, next: NextFunction) => {
-  const error = new Error("Not Found");
-  return res.status(404).json({
-    message: error.message
-  });
-});
-
-// router.use((err: any, req: Request, res: Response, next: NextFunction) => {
-//   const status = err.status || 500;
-//   const message = err.message || err;
-//   console.error(err);
-//   res.status(status).send(message);
+// router.use((req: Request, res: Response, next: NextFunction) => {
+//   const error = new Error("Not Found");
+//   return res.status(404).json({
+//     message: error.message
+//   });
 // });
+
+router.use((err: any, req: Request, res: Response, next: NextFunction) => {
+  const status = err.status || 500;
+  const message = err.message || err;
+  console.error(err);
+  res.status(status).send(message);
+});
 
 export default router;
